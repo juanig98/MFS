@@ -1,0 +1,31 @@
+version: '3'
+services:
+  # nestjs:
+  #   build:
+  #     context: ./nestjs
+  #   ports:
+  #     - 3000:3000
+
+  backoffice:
+    build:
+      context: ./backoffice
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backoffice:/app
+    
+  website:
+    build:
+      context: ./website
+    ports:
+      - 8000:8000
+    volumes:
+      - ./website:/app
+
+  template:
+    build:
+      context: ./website-template
+    ports:
+      - 8001:80
+    volumes:
+      - ./website-template:/usr/share/nginx/html

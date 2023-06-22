@@ -1,0 +1,15 @@
+.user-card {
+    width: 100%;
+    text-align: center;
+
+    b {
+        white-space: nowrap;
+    }
+}
+.user-pic {
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+}

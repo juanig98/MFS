@@ -1,0 +1,12 @@
+@for $i from 1 through 5 {
+  .vgap-#{$i} {
+    > :not(:first-child) {
+      margin-top: calc($i * 0.25rem) !important;
+      margin-bottom: calc($i * 0.25rem) !important;
+    }
+  }
+}
+
+.ws-nowrap {
+  white-space: nowrap;
+}
