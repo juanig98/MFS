@@ -1,10 +1,44 @@
-version: '3'
+version: '3.8'
 services:
-  # nestjs:
-  #   build:
-  #     context: ./nestjs
-  #   ports:
-  #     - 3000:3000
+  mysqldb:
+    image: mysql:8
+    restart: unless-stopped
+    env_file: ./api/.env 
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql123
+      - MYSQL_DATABASE=mfs 
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - mysqldb
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 3307:80
+      
+
+  api:
+    depends_on:
+      - mysqldb
+    build:
+      context: ./api
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/app
+    env_file: ./api/.env
+    environment:
+      - DB_HOST=mysqldb 
+    stdin_open: true
 
   backoffice:
     build:
@@ -29,3 +63,5 @@ services:
       - 8001:80
     volumes:
       - ./website-template:/usr/share/nginx/html
+volumes: 
+  db:
