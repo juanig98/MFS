@@ -1,5 +1,6 @@
 .env
 .parcel-cache
+package-lock.json
 # Logs
 logs
 *.log
