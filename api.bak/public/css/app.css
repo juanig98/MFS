@@ -1,0 +1,82 @@
+:root {
+    --primary-color: #034774;
+    --secondary-color: #3a6ac4;
+  }
+  
+  html,
+  body {
+    height: 100vh;
+    max-height: 100vh;
+  }
+  
+  body {
+    margin: 0;
+    max-height: 100vh;
+    overflow: hidden;
+  
+    padding: 0;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      16deg,
+      rgba(2, 0, 36, 1) 0%,
+      var(--primary-color) 35%,
+      var(--secondary-color) 100%
+    );
+    color: #fff;
+    text-align: center;
+  }
+  
+  .container {
+    padding: 25vh 0;
+  }
+  
+  .sub-container {
+    padding: 85px;
+  }
+  
+  .not-found > div {
+    font-size: 10vw;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    font-family: "Courier New", Courier, monospace;
+    gap: 10px;
+  }
+  .rotate4 {
+    -webkit-animation: spin 2.2s both;
+    -moz-animation: spin 2.2s both;
+    animation: spin 2.2s both;
+  }
+  
+  @keyframes spin {
+    25% {
+      -webkit-transform: rotate(-110deg);
+    }
+    40% {
+      -webkit-transform: rotate(-90deg);
+    }
+    60% {
+      -webkit-transform: rotate(-107deg);
+    }
+    70%,
+    100% {
+      -webkit-transform: rotate(-110deg);
+    }
+  }
+  
+  @-moz-keyframes spin {
+    25% {
+      -moz-transform: rotate(-110deg);
+    }
+    40% {
+      -moz-transform: rotate(-90deg);
+    }
+    60% {
+      -moz-transform: rotate(-107deg);
+    }
+    70%,
+    100% {
+      -moz-transform: rotate(-110deg);
+    }
+  }
+  
