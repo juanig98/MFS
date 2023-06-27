@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, 
 import { Product } from './Product.entity';
 import { Exclude, instanceToPlain } from 'class-transformer';
 import { Category } from './Category.entity';
+import { StatusEnum } from '../enums/Status.enum';
 
 @Entity({ name: 'productsCategories' })
 export class ProductCategory {
@@ -23,9 +24,9 @@ export class ProductCategory {
     @Column({ name: 'observations', length: 800, type: 'varchar' })
     observations: string;
 
-    @Column({ name: 'status', type: 'tinyint' })
+    @Column({ name: 'status', type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
-    status: number;
+    status: StatusEnum;
 
     @CreateDateColumn({ name: 'createdAt' })
     @Exclude({ toPlainOnly: true })

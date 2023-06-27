@@ -1,6 +1,7 @@
 export interface JwtUserPayload {
     id: number;
-    iss: string;
-    iat: Date;
-    exp: Date;
+    username: string;
+    iss?: string;
+    iat?: number;
+    exp?: number;
 }

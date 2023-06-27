@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 import { DataSource, DataSourceOptions, QueryRunner, SelectQueryBuilder } from 'typeorm';
-import { MysqlConnectionOptions } from "typeorm/driver/mysql/MysqlConnectionOptions";  
+import { MysqlConnectionOptions } from "typeorm/driver/mysql/MysqlConnectionOptions";
 
 dotenv.config({ path: __dirname.substring(0, __dirname.search("dist/")).concat(".env") });
 
@@ -12,9 +12,9 @@ export const database: MysqlConnectionOptions & { autoLoadEntities: boolean, opt
     type: 'mysql',
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT, 10) || 3306,
-    username: 'root',
-    password: 'mysql123',
-    database: 'mfs',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     entities: ['dist/**/*.entity{.ts,.js}'],
     synchronize: true,
     logging: ["error"],

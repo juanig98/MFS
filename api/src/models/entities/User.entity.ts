@@ -1,5 +1,6 @@
 import { Exclude, instanceToPlain } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { StatusEnum } from '../enums/Status.enum';
 
 @Entity({ name: 'users' })
 export class User {
@@ -16,13 +17,13 @@ export class User {
     @Column({ name: 'email', length: 150, type: 'varchar', unique: true })
     email: string;
 
-    @Column({ name: 'observations', length: 800, type: 'varchar' })
+    @Column({ name: 'observations', length: 800, type: 'varchar', nullable: true })
     @Exclude({ toPlainOnly: true })
     observations: string;
 
-    @Column({ name: 'status', type: 'tinyint' })
+    @Column({ name: 'status', type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
-    status: number;
+    status: StatusEnum;
 
     @CreateDateColumn({ name: 'createdAt' })
     @Exclude({ toPlainOnly: true })

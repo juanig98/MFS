@@ -4,10 +4,11 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import configuration from './config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller'; 
-import { AuthModule } from './modules/auth/auth.module'; 
+import { AppController } from './app.controller';
+import { AuthModule } from './modules/auth/auth.module';
 import { ProductsModule } from './modules/products/products.module';
-import { UsersModule } from './modules/users/users.module';   
+import { UsersModule } from './modules/users/users.module';
+import { CategoriesModule } from './modules/categories/categories.module';
 
 @Module({
   imports: [
@@ -20,8 +21,11 @@ import { UsersModule } from './modules/users/users.module';
         ...config.get('database'),
         queryDecorators: config.get('database.queryDecorators')
       })
-    }), 
-    AuthModule, ProductsModule, UsersModule, 
+    }),
+    AuthModule,
+    ProductsModule,
+    UsersModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [],
