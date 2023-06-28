@@ -12,18 +12,18 @@ services:
     volumes:
       - db:/var/lib/mysql
   
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   container_name: pma
-  #   links:
-  #     - mysqldb
-  #   environment:
-  #     PMA_HOST: mysqldb
-  #     PMA_PORT: 3306
-  #     PMA_ARBITRARY: 1
-  #   restart: always
-  #   ports:
-  #     - 3307:80
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - mysqldb
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 3307:80
       
   api:
     depends_on:
@@ -47,20 +47,20 @@ services:
     volumes:
       - ./backoffice:/app
     
-  website:
-    build:
-      context: ./website
-    ports:
-      - 8000:8000
-    volumes:
-      - ./website:/app
+  # website:
+  #   build:
+  #     context: ./website
+  #   ports:
+  #     - 8000:8000
+  #   volumes:
+  #     - ./website:/app
 
-  template:
-    build:
-      context: ./website-template
-    ports:
-      - 8001:80
-    volumes:
-      - ./website-template:/usr/share/nginx/html
+  # template:
+  #   build:
+  #     context: ./website-template
+  #   ports:
+  #     - 8001:80
+  #   volumes:
+  #     - ./website-template:/usr/share/nginx/html
 volumes: 
   db:

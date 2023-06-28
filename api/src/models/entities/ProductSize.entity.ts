@@ -24,16 +24,16 @@ export class ProductSize extends BaseEntity {
     @Column({ length: 25, type: 'varchar' })
     value: string;
 
-    @Column({ type: 'int' })
+    @Column({ type: 'int', default: 1 })
     quantity: number;
 
-    @Column({ length: 800, type: 'varchar' })
+    @Column({ length: 800, type: 'varchar', nullable: true })
     observations: string;
 
     @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
- 
+
     toJSON(): Partial<ProductSize> {
         return instanceToPlain(this);
     }

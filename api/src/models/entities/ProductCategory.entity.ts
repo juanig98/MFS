@@ -21,7 +21,7 @@ export class ProductCategory extends BaseEntity {
     @JoinColumn({ name: 'categoryId' })
     category: Category;
 
-    @Column({ length: 800, type: 'varchar' })
+    @Column({ length: 800, type: 'varchar', nullable: true })
     observations: string;
 
     @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })

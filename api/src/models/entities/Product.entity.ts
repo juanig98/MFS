@@ -17,18 +17,18 @@ export class Product extends BaseEntity {
     description: string;
 
     @Column({ precision: 18, scale: 2, type: 'decimal', default: 0.00 })
-    priceCost: string;
+    priceCost: number;
 
     @Column({ precision: 18, scale: 2, type: 'decimal', default: 0.00 })
-    pricePublic: string;
+    pricePublic: number;
 
-    @Column({ length: 800, type: 'varchar' })
+    @Column({ length: 800, type: 'varchar', nullable: true })
     observations: string;
 
     @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
- 
+
     toJSON(): Partial<Product> {
         return instanceToPlain(this);
     }

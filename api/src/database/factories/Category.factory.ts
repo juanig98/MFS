@@ -6,6 +6,6 @@ import { faker } from '@faker-js/faker/locale/es_MX';
 export default setSeederFactory(Category, async () => {
     const category = new Category();
     category.description = faker.commerce.productAdjective();
-    category.slug = slugify(category.description);
+    category.slug = slugify(category.description).toLowerCase();
     return category;
 }); 
