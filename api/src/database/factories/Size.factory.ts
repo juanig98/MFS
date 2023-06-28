@@ -1,0 +1,27 @@
+import { Size } from "src/models/entities/Size.entity";
+
+export const sizeFactory: Partial<Size>[] = [
+    { title: 'Tamaño', abbreviation: 'Tam.', description: 'Tamaño (texto)', type: 'text' },
+    { title: 'Tamaño', abbreviation: 'Tam.', description: 'Tamaño (número)', type: 'text' },
+    { title: 'Talle', abbreviation: 'Talle', description: 'Talle (texto)', type: 'text' },
+    { title: 'Talle', abbreviation: 'Talle', description: 'Talle Arg (número) ', type: 'number', minimum: 0, maximum: 100, suffix: 'Arg' },
+    { title: 'Talle', abbreviation: 'Talle', description: 'Talle US (número) ', type: 'number', minimum: 0, maximum: 100, suffix: 'US' },
+    { title: 'Talle', abbreviation: 'Talle', description: 'Talle UK (número) ', type: 'number', minimum: 0, maximum: 100, suffix: 'UK' },
+    { title: 'Talle', abbreviation: 'Talle', description: 'Talle EUR (número) ', type: 'number', minimum: 0, maximum: 100, suffix: 'EUR' },
+    { title: 'Talle', abbreviation: 'Talle', description: 'Talle centimetros ', type: 'number', minimum: 0, suffix: 'cm' },
+    { title: 'Largo', abbreviation: 'Largo', description: 'Centímetros (largo)', type: 'number', minimum: 0, suffix: 'cm' },
+    { title: 'Ancho', abbreviation: 'Ancho', description: 'Centímetros (ancho)', type: 'number', minimum: 0, suffix: 'cm' },
+    { title: 'Altura', abbreviation: 'Alt.', description: 'Centímetros (altura)', type: 'number', minimum: 0, suffix: 'cm' },
+    { title: 'Espesor', abbreviation: 'Esp.', description: 'Centímetros (espesor)', type: 'number', minimum: 0, suffix: 'cm' },
+    { title: 'Largo', abbreviation: 'Largo', description: 'Milímetros (largo)', type: 'number', minimum: 0, suffix: 'mm' },
+    { title: 'Ancho', abbreviation: 'Ancho', description: 'Milímetros (ancho)', type: 'number', minimum: 0, suffix: 'mm' },
+    { title: 'Altura', abbreviation: 'Alt.', description: 'Milímetros (altura)', type: 'number', minimum: 0, suffix: 'mm' },
+    { title: 'Espesor', abbreviation: 'Esp.', description: 'Milímetros (espesor)', type: 'number', minimum: 0, suffix: 'mm' },
+    { title: 'Largo', abbreviation: 'Largo', description: 'Metros (largo)', type: 'number', minimum: 0, suffix: 'm.' },
+    { title: 'Ancho', abbreviation: 'Ancho', description: 'Metros (ancho)', type: 'number', minimum: 0, suffix: 'm.' },
+    { title: 'Altura', abbreviation: 'Alt.', description: 'Metros (altura)', type: 'number', minimum: 0, suffix: 'm.' },
+    { title: 'Espesor', abbreviation: 'Esp.', description: 'Metros (espesor)', type: 'number', minimum: 0, suffix: 'm.' },
+    { title: 'Capacidad', abbreviation: 'Cap.', description: 'Litro', type: 'number', minimum: 0, suffix: 'l.' },
+    { title: 'Capacidad', abbreviation: 'Cap.', description: 'Mililitro', type: 'number', minimum: 0, suffix: 'ml.' },
+    { title: 'Autonomía', abbreviation: 'Cap.', description: 'Mililitro', type: 'number', minimum: 0, suffix: 'ml.' },
+]

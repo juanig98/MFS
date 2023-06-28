@@ -1,16 +1,16 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm';
-import { Product } from './Product.entity';
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { Category } from './Category.entity';
+import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 import { StatusEnum } from '../enums/Status.enum';
+import { Category } from './Category.entity';
+import { Product } from './Product.entity';
 
 @Entity({ name: 'productsCategories' })
-export class ProductCategory {
+export class ProductCategory extends BaseEntity {
 
-    @PrimaryColumn({ name: 'productId' })
+    @PrimaryColumn()
     productId: number;
 
-    @PrimaryColumn({ name: 'categoryId' })
+    @PrimaryColumn()
     categoryId: number;
 
     @OneToOne(() => Product)
@@ -19,22 +19,15 @@ export class ProductCategory {
 
     @OneToOne(() => Category)
     @JoinColumn({ name: 'categoryId' })
-    category: Category; 
+    category: Category;
 
-    @Column({ name: 'observations', length: 800, type: 'varchar' })
+    @Column({ length: 800, type: 'varchar' })
     observations: string;
 
-    @Column({ name: 'status', type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
+    @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
 
-    @CreateDateColumn({ name: 'createdAt' })
-    @Exclude({ toPlainOnly: true })
-    createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updatedAt' })
-    @Exclude({ toPlainOnly: true })
-    updatedAt: Date;
 
     toJSON(): Partial<ProductCategory> {
         return instanceToPlain(this);

@@ -1,16 +1,16 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm';
-import { Product } from './Product.entity';
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { Image } from './Image.entity';
+import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 import { StatusEnum } from '../enums/Status.enum';
+import { Image } from './Image.entity';
+import { Product } from './Product.entity';
 
 @Entity({ name: 'productsImages' })
-export class ProductImage {
+export class ProductImage extends BaseEntity {
 
-    @PrimaryColumn({ name: 'productId' })
+    @PrimaryColumn()
     productId: number;
 
-    @PrimaryColumn({ name: 'imageId' })
+    @PrimaryColumn()
     imageId: number;
 
     @OneToOne(() => Product)
@@ -19,22 +19,14 @@ export class ProductImage {
 
     @OneToOne(() => Image)
     @JoinColumn({ name: 'imageId' })
-    image: Image; 
+    image: Image;
 
-    @Column({ name: 'observations', length: 800, type: 'varchar' })
+    @Column({ length: 800, type: 'varchar' })
     observations: string;
 
-    @Column({ name: 'status', type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
+    @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
-
-    @CreateDateColumn({ name: 'createdAt' })
-    @Exclude({ toPlainOnly: true })
-    createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updatedAt' })
-    @Exclude({ toPlainOnly: true })
-    updatedAt: Date;
 
     toJSON(): Partial<ProductImage> {
         return instanceToPlain(this);

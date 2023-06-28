@@ -1,45 +1,43 @@
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { TextNumberEnum } from '../enums/TextNumber.enum';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { StatusEnum } from '../enums/Status.enum';
+import { TextNumberEnum } from '../enums/TextNumber.enum';
 
 @Entity({ name: 'sizes' })
-export class Size {
-    @PrimaryGeneratedColumn({ name: 'id' })
+export class Size extends BaseEntity {
+    @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ name: 'description', length: 100, type: 'varchar' })
+    @Column({ length: 50, type: 'varchar' })
+    title: string;
+
+    @Column({ length: 100, type: 'varchar' })
     description: string;
 
-    @Column({ name: 'type', type: 'enum', enum: TextNumberEnum, default: TextNumberEnum.NUMBER })
+    @Column({ length: 10, type: 'char', nullable: true })
+    abbreviation: string;
+
+    @Column({ type: 'enum', enum: TextNumberEnum, default: TextNumberEnum.NUMBER })
     type: string;
 
-    @Column({ name: 'maximum', precision: 18, scale: 2, type: 'decimal' })
-    maximum: string;
+    @Column({ precision: 18, scale: 2, type: 'decimal', nullable: true })
+    maximum: number;
 
-    @Column({ name: 'minimum', precision: 18, scale: 2, type: 'decimal' })
-    minimum: string;
+    @Column({ precision: 18, scale: 2, type: 'decimal', nullable: true })
+    minimum: number;
 
-    @Column({ name: 'suffix', length: 10, type: 'char' })
+    @Column({ length: 10, type: 'char', nullable: true })
     suffix: string;
 
-    @Column({ name: 'prefix', length: 10, type: 'char' })
+    @Column({ length: 10, type: 'char', nullable: true })
     prefix: string;
 
-    @Column({ name: 'observations', length: 800, type: 'varchar' })
+    @Column({ length: 800, type: 'varchar', nullable: true })
     observations: string;
 
-    @Column({ name: 'status', type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
+    @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
-
-    @CreateDateColumn({ name: 'createdAt' })
-    @Exclude({ toPlainOnly: true })
-    createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updatedAt' })
-    @Exclude({ toPlainOnly: true })
-    updatedAt: Date;
 
     toJSON(): Partial<Size> {
         return instanceToPlain(this);

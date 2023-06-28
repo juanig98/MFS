@@ -1,32 +1,24 @@
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { StatusEnum } from '../enums/Status.enum';
 
 @Entity({ name: 'categories' })
-export class Category {
-    @PrimaryGeneratedColumn({ name: 'id' })
+export class Category extends BaseEntity {
+    @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ name: 'description', length: 100, type: 'varchar' })
+    @Column({ length: 100, type: 'varchar' })
     description: string;
 
-    @Column({ name: 'slug', length: 150, type: 'varchar', unique: true })
+    @Column({ length: 150, type: 'varchar', unique: true })
     slug: string;
 
-    @Column({ name: 'observations', length: 800, type: 'varchar' })
+    @Column({ length: 800, type: 'varchar', nullable: true })
     observations: string;
 
-    @Column({ name: 'status', type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
+    @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
-
-    @CreateDateColumn({ name: 'createdAt' })
-    @Exclude({ toPlainOnly: true })
-    createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updatedAt' })
-    @Exclude({ toPlainOnly: true })
-    updatedAt: Date;
 
     toJSON(): Partial<Category> {
         return instanceToPlain(this);

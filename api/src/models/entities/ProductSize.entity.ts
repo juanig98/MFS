@@ -1,16 +1,16 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import { Exclude, instanceToPlain } from 'class-transformer';
+import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
+import { StatusEnum } from '../enums/Status.enum';
 import { Product } from './Product.entity';
 import { Size } from './Size.entity';
-import { Exclude, instanceToPlain } from 'class-transformer';
-import { StatusEnum } from '../enums/Status.enum';
 
 @Entity({ name: 'productsSizes' })
-export class ProductSize {
+export class ProductSize extends BaseEntity {
 
-    @PrimaryColumn({ name: 'productId' })
+    @PrimaryColumn()
     productId: number;
 
-    @PrimaryColumn({ name: 'sizeId' })
+    @PrimaryColumn()
     sizeId: number;
 
     @OneToOne(() => Product)
@@ -21,27 +21,19 @@ export class ProductSize {
     @JoinColumn({ name: 'sizeId' })
     size: Size;
 
-    @Column({ name: 'value', length: 25, type: 'varchar' })
+    @Column({ length: 25, type: 'varchar' })
     value: string;
-    
-    @Column({ name: 'quantity', type: 'int' })
+
+    @Column({ type: 'int' })
     quantity: number;
-    
-    @Column({ name: 'observations', length: 800, type: 'varchar' })
+
+    @Column({ length: 800, type: 'varchar' })
     observations: string;
 
-    @Column({ name: 'status', type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
+    @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
-
-    @CreateDateColumn({ name: 'createdAt' })
-    @Exclude({ toPlainOnly: true })
-    createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updatedAt' })
-    @Exclude({ toPlainOnly: true })
-    updatedAt: Date;
-
+ 
     toJSON(): Partial<ProductSize> {
         return instanceToPlain(this);
     }
