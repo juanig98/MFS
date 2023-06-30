@@ -1,4 +1,4 @@
-import { Controller, Get, Res } from '@nestjs/common'; 
+import { Controller, Get, Res } from '@nestjs/common';
 import { StatusResultResponse } from './models/interfaces/StatusResultResponse';
 
 @Controller()

@@ -27,6 +27,8 @@ export class AuthController {
   @UseGuards(AuthUserGuard)
   @ApiOkResponse()
   async validate(@User() usuario: UserEntity) {
+    console.log("LLEGO!");
+    
     return usuario.toValidate();
   }
 }

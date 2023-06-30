@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import './ProductList.scss'
+import './ProductList.scss';
 import { IProduct } from '../../models/IProduct';
-import { ProductService } from '../../services/product'; 
+import { ProductService } from '../../services/product.service';
 
 function currencyFormat(amount: number) {
    // Formatear el número como una cadena en formato de moneda
@@ -52,7 +52,7 @@ export default function ProductList() {
             <tbody>
                {filteredData.map((product) => { 
                   return (
-                  <tr>
+                  <tr key={product.id}>
                      <td className='td-image'>
                         <img src={product.image}/>
                      </td>

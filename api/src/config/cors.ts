@@ -4,6 +4,7 @@ const whitelist: string[] =
     [
         'http://localhost',
         'http://localhost:4400',
+        'http://localhost:8080',
     ];
 
 
