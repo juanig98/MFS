@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Detalle</th>
+      <th scope="col">Costo</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td> <img [src]="p.images[0].image.path" width="60" alt=""></td>
+      <td class="td-detail">
+        <div class="p-title">
+          {{ p.title }} ({{p.id}} )
+        </div>
+        <p class="p-description">{{p.description}}</p>
+      </td>
+      <td class="td-price"> {{p.priceCost|currency}}</td>
+      <td class="td-price"> {{p.pricePublic|currency}}</td>
+    </tr>
+  </tbody>

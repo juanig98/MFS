@@ -1,32 +1,35 @@
-import { Body, Controller, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { TokenDto } from 'src/modules/auth/dtos/TokenDto';
 import { User } from 'src/common/decorators/User.decorator';
 import { User as UserEntity } from 'src/models/entities/User.entity';
 import { LoginDto } from 'src/modules/auth/dtos/LoginDto';
 import { AuthUserGuard } from 'src/common/guards/User/AuthUser.guard';
+import { ReturnLoginDto } from './dtos/ReturnLoginDto';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  
+
   constructor(private service: AuthService) { }
 
   @Post()
-  async getToken(@Body() loginDto: LoginDto): Promise<TokenDto> {
+  async login(@Body() loginDto: LoginDto): Promise<ReturnLoginDto> {
     const validate = await this.service.validate(loginDto);
 
     if (!validate.valid) throw new UnauthorizedException(validate.result);
 
-    return await this.service.generateToken(validate.user)
+    const token = await this.service.generateToken(validate.user);
+
+    return { authenticated: true, token }
   }
 
-  @Post('validate')
   @ApiBearerAuth()
-  @UseGuards(AuthUserGuard)
   @ApiOkResponse()
-  async validate(@User() usuario: UserEntity) { 
+  @Post('validate')
+  @UseGuards(AuthUserGuard)
+  @HttpCode(200)
+  async validate(@User() usuario: UserEntity) {
     return usuario.toValidate();
   }
 }

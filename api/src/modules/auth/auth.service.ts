@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { User } from 'src/models/entities/User.entity';
-import { TokenDto } from 'src/modules/auth/dtos/TokenDto';
 import { JwtUserPayload } from 'src/common/guards/User/JwtUserPayload';
 import { LoginDto } from 'src/modules/auth/dtos/LoginDto';
 import { JwtService } from '@nestjs/jwt';
@@ -27,7 +26,7 @@ export class AuthService {
 
         if (!user) return { result: "***Usuario inválido", valid: false }
 
-        if (process.env.ENVIRONMENT === 'local') return { user, result: "Usuario válido, entorno local/test activo", valid: true }
+        // if (process.env.ENVIRONMENT === 'local') return { user, result: "Usuario válido, entorno local/test activo", valid: true }
 
         const passValid = await this.usersService.checkPassword(user, password);
 
@@ -36,8 +35,8 @@ export class AuthService {
         return { user, result: "Usuario válido", valid: true };
     }
 
-    async generateToken(user: User): Promise<TokenDto> {
+    async generateToken(user: User): Promise<string> {
         const payload: JwtUserPayload = { id: user.id, username: user.username };
-        return { token: this.jwtService.sign(payload, { issuer: 'mfs' }) };
+        return this.jwtService.sign(payload, { issuer: 'mfs' });
     }
 }

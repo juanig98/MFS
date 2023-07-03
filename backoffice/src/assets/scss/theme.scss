@@ -1,0 +1,25 @@
+:root {
+  --bg-color: #212121;
+}
+body[cds-theme~="dark"] {
+  background-color: var(--bg-color) !important;
+}
+
+[cds-theme~="dark"] {
+  .clr-input {
+    color: #212121;
+  }
+
+  .btn.btn-primary {
+    background-color: #07638e;
+    border: #07638e;
+    color: #fff;
+    &:hover {
+      color: #fff;
+      background-color: #055072;
+    }
+  }
+}
+.w-full {
+  width: 100%;
+}

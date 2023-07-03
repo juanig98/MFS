@@ -22,7 +22,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
         if (status <= 400 && status >= 499) {
             console.error(`${new Date()}: [User: ${user.username} (${user.id})] ${exception.getResponse()}`)
         }
-
+        
+        if (exception.message.startsWith('***')) {
+            exception.message = exception.message.substring(3, exception.message.length)
+        }
 
         response.status(status).json({
             statusCode: status,

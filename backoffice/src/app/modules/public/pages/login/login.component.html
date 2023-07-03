@@ -1,0 +1,52 @@
+<main>
+  <div class="login-container">
+    <div class="w-full text-center">
+      <h2 [style]="{color:'var(--bg-color)'}">Acceso</h2>
+    </div>
+
+    <div *ngIf="alert.show" class="alert" [class]="alert.class">
+      <div class="alert-items">
+        <span class="alert-text">
+          {{ alert.data }}
+        </span>
+      </div>
+      <button type="button" class="close" aria-label="Close" (click)="alert.show=false">
+        <cds-icon aria-hidden="true" shape="close"></cds-icon>
+      </button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+      <div class="clr-form-control">
+        <label for="username" class="clr-control-label">Usuario</label>
+        <div class="clr-control-container w-full"
+          [class]="{'clr-error': form.get('username')?.touched && form.get('username')?.invalid}">
+          <div class="clr-input-wrapper">
+            <input type="text" id="username" formControlName="username" class="clr-input w-full" />
+          </div>
+          <span class="clr-subtext">
+            <div *ngIf="form.get('username')?.touched && form.get('username')?.invalid">Debes completar este campo</div>
+          </span>
+        </div>
+      </div>
+
+      <div class="clr-form-control">
+        <label for="password" class="clr-control-label">Contraseña</label>
+        <div class="clr-control-container w-full"
+          [class]="{'clr-error': form.get('password')?.touched && form.get('password')?.invalid}">
+          <div class="clr-input-wrapper">
+            <input type="password" id="password" formControlName="password" class="clr-input w-full" />
+          </div>
+          <span class="clr-subtext">
+            <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid">Debes completar este campo</div>
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-2 w-full d-flex justify-content-end">
+        <button class="btn btn-primary" type="submit">Acceder</button>
+      </div>
+
+    </form>
+  </div>
+</main>
