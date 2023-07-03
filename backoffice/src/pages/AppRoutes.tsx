@@ -1,7 +1,8 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, BrowserRouter } from "react-router-dom";
 import GuardedRoute from "../guards/GuardedRoute";
 import Login from "./public/Login";
 import { Dashboard } from "./authenticated/Dashboard";
+import ProtectedRoute from "../guards/ProtectedRoute";
 
 interface AppRoutesProp {
   /**
@@ -18,40 +19,23 @@ export const enum AppRoutesEnum {
   LOGOUT = "/logout",
 }
 
-const AppRoutes = (props: AppRoutesProp): JSX.Element => {
-  const navigate = useNavigate();
-  const { isAuthenticated } = props;
+const AppRoutes = (): JSX.Element => {  
 
   return (
-    <Routes>
-      {/* Unguarded Routes */}
-      <Route path={AppRoutesEnum.ABOUT} element={<p>About Page</p>} />
-      {/* Non-Authenticated Routes: accessible only if user in not authenticated */}
-      <Route
-        element={
-          <GuardedRoute
-            isRouteAccessible={!isAuthenticated}
-            redirectRoute={AppRoutesEnum.DASHBOARD}
-          />
-        }
-      >
-        {/* Login Route */}
-        <Route path={AppRoutesEnum.LOGIN} element={<Login />} />
-      </Route>
+    <BrowserRouter basename={'/'}>
+      <Routes>
 
-      {/* -------------------
-            Authenticated Routes 
-        ------------------- */}
-      <Route
-        element={
-          <GuardedRoute isRouteAccessible={isAuthenticated} redirectRoute={AppRoutesEnum.LOGIN} />
-        }
-      >
-        <Route path={AppRoutesEnum.DASHBOARD} element={<Dashboard/>} /> 
-      </Route>
-      {/* Not found Route */}
-      <Route path="*" element={<p>Page Not Found</p>} />
-    </Routes>
+        <Route path='login' element={<Login />} />
+
+
+        <Route path='/dashboard' element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
+
+      </Routes>
+    </BrowserRouter>
   );
 };
 

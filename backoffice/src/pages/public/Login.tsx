@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./Login.scss";
-import { AuthService } from "../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
+import { AuthService } from "../../services/auth/auth.service";
 import { AppRoutesEnum } from "../AppRoutes";
+import "./Login.scss";
 
 const Login = () => {
   const [showAll, setShowAll] = useState(true);

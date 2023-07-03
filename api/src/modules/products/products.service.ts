@@ -14,8 +14,8 @@ export class ProductsService {
         private readonly repository: Repository<Product>,
     ) { }
 
-    async findAll(): Promise<Product[]> {
-        return this.repository.findBy({ status: StatusEnum.ACTIVE });
+    async findAll(relations?: string[]): Promise<Product[]> {
+        return this.repository.find({ where: { status: StatusEnum.ACTIVE }, relations });
     }
 
     async findOne(id: number): Promise<Product> {

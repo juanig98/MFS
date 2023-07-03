@@ -1,6 +1,9 @@
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { StatusEnum } from '../enums/Status.enum';
+import { ProductCategory } from './ProductCategory.entity';
+import { ProductSize } from './ProductSize.entity';
+import { ProductImage } from './ProductImage.entity';
 
 @Entity({ name: 'products' })
 export class Product extends BaseEntity {
@@ -28,6 +31,15 @@ export class Product extends BaseEntity {
     @Column({ type: 'enum', enum: StatusEnum, default: StatusEnum.ACTIVE })
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
+
+    @OneToMany(() => ProductCategory, x => x.product)
+    public categories!: ProductCategory[];
+    
+    @OneToMany(() => ProductSize, x => x.product)
+    public sizes!: ProductSize[];
+
+    @OneToMany(() => ProductImage, x => x.product)
+    public images!: ProductImage[];
 
     toJSON(): Partial<Product> {
         return instanceToPlain(this);

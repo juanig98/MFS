@@ -2,25 +2,40 @@
   width: 100%;
   background-color: black;
   color: white;
-  border-radius: 6px; 
+  border-radius: 6px;
+
+  input{
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid white;
+  }
 }
 
 .p-title {
   font-size: 16px;
   font-weight: bold;
 }
+
 .p-description {
   font-size: 12px;
 }
+
 .td-price {
   text-align: end;
   font-size: 18px;
   font-weight: bold;
 }
 
-.td-image{
-  img{
+.td-image {
+  min-width: 130px;
+  width: 130px;
+  img {
     height: 120px;
     width: 120px;
   }
+}
+
+.td-detail {
+  min-width: 40vw;
+  width: 40vw;
 }

@@ -10,7 +10,7 @@ export function useAuth() {
   const [cookies, setCookie, removeCookie] = useCookies([COOKIE_TOKEN]);
   const [user, setUser] = useState(null);
   const [isAuthenticated, setisAuthenticated] = useState(false);
-  useJwt(cookies.token);
+  // useJwt(cookies.token);
 
   const authService = new AuthService();
 
@@ -22,6 +22,10 @@ export function useAuth() {
       location.href = location.origin
     }, 1000);
   };
+
+  const hasToken = () => {
+    return !!cookies.token
+  }
 
   useEffect(() => {
     async function getUserDetails() {
@@ -37,5 +41,5 @@ export function useAuth() {
     getUserDetails();
   }, []);
 
-  return { user, isAuthenticated, logout };
+  return { user, isAuthenticated, logout, hasToken };
 }

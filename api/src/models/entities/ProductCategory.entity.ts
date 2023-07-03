@@ -28,7 +28,7 @@ export class ProductCategory extends BaseEntity {
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
 
-
+  
     toJSON(): Partial<ProductCategory> {
         return instanceToPlain(this);
     }

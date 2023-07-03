@@ -10,7 +10,7 @@ export class ProductsController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        return this.service.findAll(['images', 'images.image', 'sizes', 'sizes.size', 'categories', 'categories.category']);
     }
 
     @Get(':id')
