@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Route, RouteProps, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { AppRoutesEnum } from "../pages/AppRoutes";
 
 const ProtectedRoute = (props: RouteProps) => {
     const { hasToken } = useAuth();
@@ -8,11 +9,9 @@ const ProtectedRoute = (props: RouteProps) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const checkUserToken = async () => {
-        console.log({ hasToken });
-
         if (!hasToken) {
-            setIsLoggedIn(false); 
-            return navigate('/login');
+            setIsLoggedIn(false);
+            return navigate(AppRoutesEnum.LOGIN);
         }
         setIsLoggedIn(true);
     }
@@ -21,7 +20,7 @@ const ProtectedRoute = (props: RouteProps) => {
     }, [isLoggedIn]);
 
     return (
-        <React.Fragment> {isLoggedIn ? props.children : null }</React.Fragment>
+        <React.Fragment> {isLoggedIn ? props.children : null}</React.Fragment>
     );
 }
 export default ProtectedRoute;

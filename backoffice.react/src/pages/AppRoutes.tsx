@@ -15,20 +15,25 @@ export const enum AppRoutesEnum {
   LOGIN = "/login",
   HOME = "/home",
   ABOUT = "/about",
+  ROOT = "/",
   DASHBOARD = "/dashboard",
   LOGOUT = "/logout",
 }
 
-const AppRoutes = (): JSX.Element => {  
+const AppRoutes = (): JSX.Element => {
 
   return (
     <BrowserRouter basename={'/'}>
       <Routes>
 
-        <Route path='login' element={<Login />} />
+        <Route path={AppRoutesEnum.LOGIN} element={<Login />} />
 
-
-        <Route path='/dashboard' element={
+        <Route path={AppRoutesEnum.ROOT} element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
+        <Route path={AppRoutesEnum.DASHBOARD} element={
           <ProtectedRoute>
             <Dashboard />
           </ProtectedRoute>

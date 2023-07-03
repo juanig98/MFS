@@ -26,9 +26,7 @@ export class AuthController {
   @ApiBearerAuth()
   @UseGuards(AuthUserGuard)
   @ApiOkResponse()
-  async validate(@User() usuario: UserEntity) {
-    console.log("LLEGO!");
-    
+  async validate(@User() usuario: UserEntity) { 
     return usuario.toValidate();
   }
 }

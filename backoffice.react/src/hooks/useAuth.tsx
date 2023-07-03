@@ -18,14 +18,11 @@ export function useAuth() {
     setUser(null);
     setisAuthenticated(false);
     removeCookie(COOKIE_TOKEN);
-    setTimeout(() => { 
+    setTimeout(() => {
       location.href = location.origin
     }, 1000);
   };
-
-  const hasToken = () => {
-    return !!cookies.token
-  }
+ 
 
   useEffect(() => {
     async function getUserDetails() {
@@ -41,5 +38,5 @@ export function useAuth() {
     getUserDetails();
   }, []);
 
-  return { user, isAuthenticated, logout, hasToken };
+  return { user, isAuthenticated, logout, hasToken: !!cookies.token };
 }

@@ -41,7 +41,7 @@ export default function ProductList() {
    return (
       <div className='product-list'>
          <div className='py-3 px-2'>
-            <input type="text" value={filter} onChange={handleInputChange} placeholder='Buscar...'/>
+            <input type="text" value={filter} onChange={handleInputChange} placeholder='Buscar...' />
          </div>
 
          <table className="table table-dark">
@@ -70,7 +70,7 @@ export default function ProductList() {
                         <td className='td-price'> {currencyFormat(product.pricePublic)}</td>
                      </tr>);
                })}
-               {!filteredData.length ? <tr><td colSpan={4} className='text-center' style={{ "min-width": "60vw" }}><h2>No se encontraron resultados</h2></td></tr> : <></>}
+               {!filteredData.length ? <tr><td colSpan={4} className='text-center' ><h2>No se encontraron resultados</h2></td></tr> : <></>}
             </tbody>
          </table>
       </div>
