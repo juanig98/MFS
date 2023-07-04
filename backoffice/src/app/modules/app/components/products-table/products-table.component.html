@@ -5,6 +5,7 @@
       <th scope="col">Detalle</th>
       <th scope="col">Costo</th>
       <th scope="col">Precio</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -12,12 +13,23 @@
       <td> <img [src]="p.images[0].image.path" width="60" alt=""></td>
       <td class="td-detail">
         <div class="p-title">
-          {{ p.title }} ({{p.id}} )
+          {{ p.title }} (ID: {{p.id}})
         </div>
         {{p.description}}
       </td>
       <td class="td-price"> {{p.priceCost|currency}}</td>
       <td class="td-price"> {{p.pricePublic|currency}}</td>
+      <td class="td-actions">
+        <button class="btn btn-sm btn-icon btn-primary" type="button" aria-label="edit" title="Editar" (click)="edit(p)">
+          <cds-icon shape="note"></cds-icon>
+        </button>
+        <button class="btn btn-sm btn-icon btn-danger" type="button" aria-label="delete" title="Eliminar" (click)="delete(p)">
+          <cds-icon shape="trash"></cds-icon>
+        </button>
+
+      </td>
     </tr>
   </tbody>
 </table>
+
+<app-product-dialog [config]="this.productDialog"></app-product-dialog>

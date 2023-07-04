@@ -27,8 +27,9 @@ export class ProductsComponent {
   ngOnInit(): void {
     this.loading$ = this.store.select(selectLoading);
     this.store.select(selectProducts).subscribe({
-      next: res => {       
-        if (!res.length) this.store.dispatch(loadProducts());
+      next: res => {
+        if (!res.length)
+          this.store.dispatch(loadProducts());
       }
     });
 

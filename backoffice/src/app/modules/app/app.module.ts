@@ -13,6 +13,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { PublicationsComponent } from './pages/publications/publications.component';
 import { InboxComponent } from './pages/inbox/inbox.component';
+import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
 
  
 @NgModule({
@@ -22,7 +23,8 @@ import { InboxComponent } from './pages/inbox/inbox.component';
     ProductsComponent,
     DashboardComponent,
     PublicationsComponent,
-    InboxComponent
+    InboxComponent,
+    ProductDialogComponent
   ],
   imports: [
     CommonModule,

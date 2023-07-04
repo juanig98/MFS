@@ -1,0 +1,91 @@
+<!-- <clr-modal [(clrModalOpen)]="config.open" [clrModalClosable]="true">
+    <h3 class="modal-title">Producto</h3>
+    <div class="modal-body">
+
+
+    </div>
+    <div class="modal-footer d-flex ">
+        <button type="button" class="btn btn-danger" (click)="config.open = false">
+            Cancelar
+        </button>
+        <button type="button" class="btn btn-primary">
+            Confirmar
+        </button>
+    </div>
+</clr-modal> -->
+<div class="modal" *ngIf="config.open">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button aria-label="Close" class="close" type="button" (click)="config.open=false">
+                    <cds-icon shape="close"></cds-icon>
+                </button>
+                <h3 class="modal-title">Producto</h3>
+            </div>
+            <form (ngSubmit)="onSubmit()" [formGroup]="form" clrForm clrLayout="horizontal">
+
+                <div class="modal-body">
+
+                    <clr-input-container>
+                        <label>Título</label>
+                        <input placeholder="Sillón rojo" clrInput formControlName="title" name="title" required />
+                        <clr-control-error *ngIf="form.get('title')?.touched && form.get('title')?.invalid">
+                            Debes completar este campo!
+                        </clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label>Descripción</label>
+                        <input placeholder="Sillón rojo de cuero, con 3 cuerpos" clrInput formControlName="description"
+                            name="description" required />
+                        <clr-control-error *ngIf="form.get('description')?.touched && form.get('description')?.invalid">
+                            Debes completar este campo!
+                        </clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label>Costo:</label>
+                        <input placeholder="$ 10000" clrInput formControlName="priceCost" name="priceCost" required />
+                        <clr-control-error *ngIf="form.get('priceCost')?.touched && form.get('priceCost')?.invalid">
+                            Debes completar este campo!
+                        </clr-control-error>
+                    </clr-input-container>
+
+                    <clr-input-container>
+                        <label>Precio:</label>
+                        <input placeholder="$ 60000" clrInput formControlName="pricePublic" name="pricePublic"
+                            required />
+                        <clr-control-error *ngIf="form.get('pricePublic')?.touched && form.get('pricePublic')?.invalid">
+                            Debes completar este campo!
+                        </clr-control-error>
+                    </clr-input-container>
+
+                    <clr-textarea-container>
+                        <label>Precio:</label>
+                        <textarea placeholder="Cualquier otra información relevante..." clrTextarea
+                            formControlName="observations" name="observations" required></textarea>
+                        <clr-control-error
+                            *ngIf="form.get('observations')?.touched && form.get('observations')?.invalid">
+                            Debes completar este campo!
+                        </clr-control-error>
+                    </clr-textarea-container>
+
+
+
+                </div>
+
+                <div class="modal-footer d-flex">
+                    <button type="button" class="btn btn-danger" (click)="config.open=false">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Confirmar
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop" aria-hidden="true" *ngIf="config.open"></div>
