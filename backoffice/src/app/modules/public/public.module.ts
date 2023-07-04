@@ -1,21 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { PublicRoutingModule } from './public-routing.module';
-import { RootComponent } from './pages/root/root.component';
 
 
 import { HttpClientModule } from "@angular/common/http";
-import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClrAlertModule } from '@clr/angular';
-import '@cds/core/icon/register';
-import '@cds/core/alert/register';
 import { CdsModule } from '@cds/angular';
+import '@cds/core/alert/register';
+import '@cds/core/icon/register';
+import { ClrAlertModule } from '@clr/angular';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
-  declarations: [
-    RootComponent,
+  declarations: [ 
     LoginComponent
   ],
   imports: [

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ClrAlertTypesEnum } from 'src/app/models/enums/ClrAlert.enums';
 import { ClrAlertSimple } from 'src/app/models/interfaces/ClrAlertSimple';
@@ -11,7 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  title = "Login page";
 
   form: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(1)]),
@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) { }
+    private title: Title
+  ) { this.title.setTitle("Login") }
+
 
   ngOnInit(): void { }
 

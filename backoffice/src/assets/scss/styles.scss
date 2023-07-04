@@ -8,3 +8,6 @@
 
 @import "../../../node_modules/bootstrap/dist/css/bootstrap-grid.css";
 @import "../../../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
+@import '~modern-normalize/modern-normalize.css'; // css reset
+@import '~@cds/core/global.min.css'; // clarity global styles
+@import '~@cds/city/css/bundles/default.min.css'; // load base font

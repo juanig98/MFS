@@ -1,0 +1,37 @@
+<div class="main-container">
+    <header class="header-6">
+        <div class="branding">
+            <img src="assets/img/mfs-logo-cir.png" width="50" alt="">
+            <h1>Tiendita 1</h1>
+        </div>
+        <div class="header-nav">
+            <a href="javascript://" class="active nav-link nav-text">Dashboard</a>
+        </div>
+        <div class="header-actions">
+            <a href="javascript://" class="nav-link nav-icon" aria-label="settings">
+                <cds-icon shape="cog"></cds-icon>
+            </a>
+        </div>
+    </header>
+
+    <div class="content-container">
+        <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="true">
+            <a clrVerticalNavLink routerLinkActive="active" routerLink="./dashboard">
+                <cds-icon shape="dashboard" clrVerticalNavIcon></cds-icon> Dashboard
+            </a>
+            <a clrVerticalNavLink routerLinkActive="active" routerLink="./productos">
+                <cds-icon shape="bundle" clrVerticalNavIcon></cds-icon> Productos
+            </a>
+            <a clrVerticalNavLink routerLinkActive="active" routerLink="./publicaciones">
+                <cds-icon shape="picture" clrVerticalNavIcon></cds-icon> Publicaciones
+            </a>
+            <a clrVerticalNavLink routerLinkActive="active" routerLink="./inbox">
+                <cds-icon shape="inbox" clrVerticalNavIcon></cds-icon> Mensajes
+            </a>
+        </clr-vertical-nav>
+    
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

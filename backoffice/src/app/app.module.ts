@@ -1,18 +1,23 @@
+import { registerLocaleData } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import localeEsAr from '@angular/common/locales/es-AR';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CdsModule } from '@cds/angular';
+import '@cds/core/icon/register.js';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { ClarityModule } from "@clr/angular";
-import { CookieService } from 'ngx-cookie-service';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import './importIcons';
 import { ApiPrefixInterceptor } from './interceptors/api-prefix.interceptor';
 import { TokenBearerInterceptor } from './interceptors/token-bearer.interceptor';
-import { registerLocaleData } from '@angular/common';
-import localeEsAr from '@angular/common/locales/es-AR';
 registerLocaleData(localeEsAr, 'es-Ar');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,10 +26,20 @@ registerLocaleData(localeEsAr, 'es-Ar');
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    CdsModule,
     FormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
-    ClarityModule,
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: !environment.production ? [] : [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true
+        }
+      }
+    ),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }) 
 
   ],
   providers: [

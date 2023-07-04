@@ -14,9 +14,10 @@
         <div class="p-title">
           {{ p.title }} ({{p.id}} )
         </div>
-        <p class="p-description">{{p.description}}</p>
+        {{p.description}}
       </td>
       <td class="td-price"> {{p.priceCost|currency}}</td>
       <td class="td-price"> {{p.pricePublic|currency}}</td>
     </tr>
   </tbody>
+</table>
