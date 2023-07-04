@@ -1,6 +1,10 @@
+import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
 import { IProduct } from 'src/app/models/interfaces/IProduct';
 import { ProductService } from 'src/app/services/product.service';
+import { Store } from '@ngrx/store';
+import { selectProducts } from 'src/app/state/selectors/products.selectors';
+import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-products-table',
@@ -8,19 +12,13 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./products-table.component.scss']
 })
 export class ProductsTableComponent {
-  products: IProduct[] = [];
+  products$: Observable<any> = new Observable();
 
   constructor(
-    private productService: ProductService,
-  ) {
-
-  }
+    private store: Store<AppState>,
+  ) { }
 
   ngOnInit(): void {
-    this.productService.getAll().subscribe({
-      next: response => {
-        this.products = response;
-      }
-    })
+    this.products$ = this.store.select(selectProducts);
   }
 }

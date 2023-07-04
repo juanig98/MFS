@@ -16,6 +16,10 @@ import { AppComponent } from './app.component';
 import './importIcons';
 import { ApiPrefixInterceptor } from './interceptors/api-prefix.interceptor';
 import { TokenBearerInterceptor } from './interceptors/token-bearer.interceptor';
+import { productsReducer } from './state/reducers/products.reducer';
+import { ROOT_REDUCERS } from './state/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './state/effects/product.effects';
 registerLocaleData(localeEsAr, 'es-Ar');
 
 @NgModule({
@@ -29,17 +33,16 @@ registerLocaleData(localeEsAr, 'es-Ar');
     CdsModule,
     FormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(
-      {},
-      {
-        metaReducers: !environment.production ? [] : [],
-        runtimeChecks: {
-          strictActionImmutability: true,
-          strictStateImmutability: true
-        }
+    StoreModule.forRoot(ROOT_REDUCERS, {
+      metaReducers: !environment.production ? [] : [],
+      runtimeChecks: {
+        strictActionImmutability: true,
+        strictStateImmutability: true
       }
+    }
     ),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }) 
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([ProductEffects])
 
   ],
   providers: [
