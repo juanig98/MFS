@@ -2,30 +2,33 @@ import { Exclude, instanceToPlain } from 'class-transformer';
 import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 import { StatusEnum } from '../enums/Status.enum';
 import { Product } from './Product.entity';
-import { Size } from './Size.entity';
+import { Characteristic } from './Characteristic.entity';
 
-@Entity({ name: 'productsSizes' })
-export class ProductSize extends BaseEntity {
+@Entity({ name: 'productsCharacteristics' })
+export class ProductCharacteristic extends BaseEntity {
 
     @PrimaryColumn()
     productId: number;
 
     @PrimaryColumn()
-    sizeId: number;
+    characteristicId: number;
 
     @OneToOne(() => Product)
     @JoinColumn({ name: 'productId' })
     product: Product;
 
-    @OneToOne(() => Size)
-    @JoinColumn({ name: 'sizeId' })
-    size: Size;
+    @OneToOne(() => Characteristic)
+    @JoinColumn({ name: 'characteristicId' })
+    characteristic: Characteristic;
 
-    @Column({ length: 25, type: 'varchar' })
+    @Column({ length: 800, type: 'varchar', nullable: false })
     value: string;
 
-    @Column({ type: 'int', default: 1 })
-    quantity: number;
+    @Column({ type: 'bit', default: false })
+    isPrincipal: boolean;
+
+    @Column({ type: 'bit', default: false })
+    isImportant: boolean;
 
     @Column({ length: 800, type: 'varchar', nullable: true })
     observations: string;
@@ -34,7 +37,7 @@ export class ProductSize extends BaseEntity {
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
 
-    toJSON(): Partial<ProductSize> {
+    toJSON(): Partial<ProductCharacteristic> {
         return instanceToPlain(this);
     }
 }

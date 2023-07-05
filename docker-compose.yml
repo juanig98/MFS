@@ -25,26 +25,26 @@ services:
   #   ports:
   #     - 3307:80
       
-  # api:
-  #   depends_on:
-  #     - mysqldb
-  #   build:
-  #     context: ./api
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - ./api:/app
-  #   env_file: ./api/.env
-  #   environment:
-  #     - DB_HOST=mysqldb  
+  api:
+    depends_on:
+      - mysqldb
+    build:
+      context: ./api
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/app
+    env_file: ./api/.env
+    environment:
+      - DB_HOST=mysqldb  
 
-  # backoffice:
-  #   build:
-  #     context: ./backoffice
-  #   ports:
-  #     - 8080:8080
-  #   volumes:
-  #     - ./backoffice:/app
+  backoffice:
+    build:
+      context: ./backoffice
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backoffice:/app
     
   # website:
   #   build:

@@ -21,6 +21,9 @@ export class ProductImage extends BaseEntity {
     @JoinColumn({ name: 'imageId' })
     image: Image;
 
+    @Column({ type: 'bit', default: false })
+    principal: boolean;
+
     @Column({ length: 800, type: 'varchar', nullable: true })
     observations: string;
 

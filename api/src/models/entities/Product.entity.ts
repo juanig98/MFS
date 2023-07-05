@@ -1,9 +1,10 @@
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { BaseEntity, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { StatusEnum } from '../enums/Status.enum';
 import { ProductCategory } from './ProductCategory.entity';
-import { ProductSize } from './ProductSize.entity';
+import { ProductVariant } from './ProductVariant.entity';
 import { ProductImage } from './ProductImage.entity';
+import { ProductCharacteristic } from './ProductCharacteristic.entity';
 
 @Entity({ name: 'products' })
 export class Product extends BaseEntity {
@@ -19,12 +20,6 @@ export class Product extends BaseEntity {
     @Column({ length: 500, type: 'varchar' })
     description: string;
 
-    @Column({ precision: 18, scale: 2, type: 'decimal', default: 0.00 })
-    priceCost: number;
-
-    @Column({ precision: 18, scale: 2, type: 'decimal', default: 0.00 })
-    pricePublic: number;
-
     @Column({ length: 800, type: 'varchar', nullable: true })
     observations: string;
 
@@ -34,9 +29,12 @@ export class Product extends BaseEntity {
 
     @OneToMany(() => ProductCategory, x => x.product)
     public categories!: ProductCategory[];
-    
-    @OneToMany(() => ProductSize, x => x.product)
-    public sizes!: ProductSize[];
+
+    @OneToMany(() => ProductVariant, x => x.product)
+    public variants!: ProductVariant[];
+
+    @OneToMany(() => ProductCharacteristic, x => x.product)
+    public characteristics!: ProductCharacteristic[];
 
     @OneToMany(() => ProductImage, x => x.product)
     public images!: ProductImage[];
