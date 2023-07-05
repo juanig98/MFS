@@ -8,7 +8,7 @@ import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 
 export default class ProductCharacteristicSeeder implements Seeder {
 
-    createValue(characteristic: Characteristic): string {
+    createValue(characteristic: Characteristic): string { 
         if (Boolean(characteristic.isCheck)) return Math.random() < 0.5 ? 'true' : 'false';
         if (Boolean(characteristic.isNumber)) return (Math.floor(Math.random() * 100) + 1).toString();
         return ["Valor 1", "Valor 2", "Valor 3", "Valor 4", "Valor 5", "Valor 6", "Valor 7", "Valor 8", "Valor 9", "Valor 10"][Math.floor(Math.random() * 10)];

@@ -20,9 +20,11 @@ export default class ProductImageSeeder implements Seeder {
         if (!await repoProductImage.count()) {
             const allImages = await repoImage.findBy({ status: StatusEnum.ACTIVE });
             const quantityImages = getRandomNumber(3, 6);
+
             for await (const product of allProducts) {
                 for (let i = 0; i < quantityImages; i++) {
                     await repoProductImage.save({
+                        principal: i == 0,
                         product,
                         image: allImages[getRandomNumber(1, allImages.length - 1)],
                     })

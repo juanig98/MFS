@@ -17,7 +17,7 @@ export class ProductCategory extends BaseEntity {
     @JoinColumn({ name: 'productId' })
     product: Product;
 
-    @OneToOne(() => Category)
+    @OneToOne(() => Category, { eager: true })
     @JoinColumn({ name: 'categoryId' })
     category: Category;
 
@@ -28,7 +28,7 @@ export class ProductCategory extends BaseEntity {
     @Exclude({ toPlainOnly: true })
     status: StatusEnum;
 
-  
+
     toJSON(): Partial<ProductCategory> {
         return instanceToPlain(this);
     }

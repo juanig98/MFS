@@ -4,7 +4,7 @@ import { Product } from 'src/models/entities/Product.entity';
 import { ProductCategory } from 'src/models/entities/ProductCategory.entity';
 import { StatusEnum } from 'src/models/enums/Status.enum';
 import { DataSource } from 'typeorm';
-import { Seeder, SeederFactoryManager } from 'typeorm-extension'; 
+import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 
 export default class ProductCategorySeeder implements Seeder {
     async run(

@@ -17,17 +17,17 @@ export class ProductCharacteristic extends BaseEntity {
     @JoinColumn({ name: 'productId' })
     product: Product;
 
-    @OneToOne(() => Characteristic)
-    @JoinColumn({ name: 'characteristicId' })
+    @OneToOne(() => Characteristic, { eager: true })
+    @JoinColumn({ name: 'characteristicId' })  
     characteristic: Characteristic;
 
     @Column({ length: 800, type: 'varchar', nullable: false })
     value: string;
 
-    @Column({ type: 'bit', default: false })
+    @Column({ type: 'boolean', default: false })
     isPrincipal: boolean;
 
-    @Column({ type: 'bit', default: false })
+    @Column({ type: 'boolean', default: false })
     isImportant: boolean;
 
     @Column({ length: 800, type: 'varchar', nullable: true })

@@ -17,11 +17,11 @@ export class ProductImage extends BaseEntity {
     @JoinColumn({ name: 'productId' })
     product: Product;
 
-    @OneToOne(() => Image)
+    @OneToOne(() => Image, { eager: true })
     @JoinColumn({ name: 'imageId' })
     image: Image;
 
-    @Column({ type: 'bit', default: false })
+    @Column({ type: 'boolean', default: false })
     principal: boolean;
 
     @Column({ length: 800, type: 'varchar', nullable: true })

@@ -11,8 +11,9 @@ import ProductCategorySeeder from './ProductCategory.seeder';
 import ProductImageSeeder from './ProductImage.seeder';
 import UserSeeder from './User.seeder';
 import CharacteristicSeeder from './Characteristic.seeder';
-import ProductCharacteristicSeeder from './ProductCharacteristic.seeder'; 
+import ProductCharacteristicSeeder from './ProductCharacteristic.seeder';
 import ProductVariantFactory from '../factories/ProductVariant.factory';
+import ProductVariantSeeder from './ProductVariant.seeder';
 
 
 export default class InitSeeder implements Seeder {
@@ -30,6 +31,7 @@ export default class InitSeeder implements Seeder {
                 ProductCategorySeeder, 
                 ProductImageSeeder,
                 ProductCharacteristicSeeder,
+                ProductVariantSeeder
             ],
             factories: [
                 CategoryFactory,

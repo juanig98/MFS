@@ -15,23 +15,23 @@ export class ProductsService {
     ) { }
 
     async findAll(relations?: string[]): Promise<Product[]> {
-        return this.repository.find({ where: { status: StatusEnum.ACTIVE }, relations });
+        return await this.repository.find({ where: { status: StatusEnum.ACTIVE }, relations });
     }
 
     async findOne(id: number): Promise<Product> {
-        return this.repository.findOneBy({ id, status: StatusEnum.ACTIVE });
+        return await this.repository.findOneBy({ id, status: StatusEnum.ACTIVE });
     }
 
     async create(productCreateDto: ProductCreateDto): Promise<Product> {
         const product = this.repository.create(productCreateDto);
-        return this.repository.save(product);
+        return await this.repository.save(product);
     }
 
     async update(id: number, productUpdateDto: ProductUpdateDto): Promise<Product> {
         const product = await this.repository.findOneBy({ id, status: StatusEnum.ACTIVE });
         if (!product) throw new Error('***Producto no encontrado');
         this.repository.merge(product, productUpdateDto);
-        return this.repository.save(product);
+        return await this.repository.save(product);
     }
 
     async remove(id: number): Promise<void> {

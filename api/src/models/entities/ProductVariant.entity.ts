@@ -1,5 +1,5 @@
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { StatusEnum } from '../enums/Status.enum';
 import { Brand } from './Brand.entity';
 import { Product } from './Product.entity';
@@ -10,17 +10,17 @@ export class ProductVariant extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @PrimaryColumn()
+    @Column()
     productId: number;
 
-    @Column()
+    @Column({ nullable: true })
     brandId: number;
 
-    @OneToOne(() => Product)
+    @ManyToOne(() => Product)
     @JoinColumn({ name: 'productId' })
     product: Product;
 
-    @OneToOne(() => Brand, { nullable: true })
+    @ManyToOne(() => Brand, { nullable: true, eager: true })
     @JoinColumn({ name: 'brandId' })
     brand: Brand;
 

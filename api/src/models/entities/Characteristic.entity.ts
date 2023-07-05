@@ -29,16 +29,16 @@ export class Characteristic extends BaseEntity {
     @Column({ length: 50, type: 'varchar', nullable: true })
     suffix: string;
 
-    @Column({ type: 'bit', default: true })
+    @Column({ type: 'boolean', default: true })
     isNumber: boolean;
 
-    @Column({ type: 'bit', default: false })
+    @Column({ type: 'boolean', default: false })
     isCheck: boolean;
 
-    @Column({ type: 'bit', default: false })
+    @Column({ type: 'boolean', default: false })
     isString: boolean;
 
-    @Column({ type: 'bit', default: true })
+    @Column({ type: 'boolean', default: true })
     isUnique: boolean;
 
     @Column({ length: 300, type: 'varchar', nullable: true })
